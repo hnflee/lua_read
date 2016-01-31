@@ -1,7 +1,10 @@
 # 虚拟机指令(5）Arithmetic
 
+
+
+
  name | args | desc 
------------- | ------------- | ------------- 
+------------ | -------------|-------------
  OP_ADD | A B C | R(A) := RK(B) + RK(C) 
  OP_SUB | A B C | R(A) := RK(B) - RK(C) 
  OP_MUL | A B C | R(A) := RK(B) * RK(C) 
@@ -9,7 +12,7 @@
  OP_MOD | A B C | R(A) := RK(B) % RK(C) 
  OP_POW | A B C | R(A) := RK(B) ^ RK(C) 
 
-   	 
+ 	  
 上表中的指令都是与lua本身的二元操作符一一对应的标准3地址指令。B和C两个操作数计算的结果存入A中。
 
 ```
@@ -42,10 +45,10 @@
     	     0	 _ENV	1	0  
 ```
 
-| name | args | desc |
-| -- | -- | -- |
-| OP_UNM | A B  | R(A) := -R(B) |
-| OP_NOT | A B  | R(A) := not R(B) |
+ name | args | desc 
+------------ | -------------|-------------
+ OP_UNM | A B  | R(A) := -R(B) 
+ OP_NOT | A B  | R(A) := not R(B) 
 
 ```
     local a = 1;  
@@ -75,9 +78,9 @@
 从生成的结果可以看到1+1并没有生成对应的OP_ADD，而是直接把结果2赋值给了a。并且也没有为not 1生成OP_NOT指令，而是直接将false赋值给了b。 
 
 
-| name | args | desc |
-| -- | -- | -- |
-| OP_LEN | A B  | R(A) := length of R(B) |
+ name | args | desc 
+------------ | -------------|-------------
+ OP_LEN | A B  | R(A) := length of R(B) 
 
 LEN直接对应'#'操作符，返回B对象的长度，并保存到A中。
 
@@ -90,9 +93,9 @@ LEN直接对应'#'操作符，返回B对象的长度，并保存到A中。
     3   [1] RETURN      0 1
 ```
 
-| name | args | desc |
-| -- | -- | -- |
-| OP_CONCAT | A B C  | R(A) := R(B).. ... ..R(C) |
+ name | args | desc 
+------------ | -------------|-------------
+ OP_CONCAT | A B C  | R(A) := R(B).. ... ..R(C) 
 
 CONCAT将B和C指定范围内的字符串按顺序传接到一起，将结果存入到A。
 
