@@ -12,12 +12,12 @@ local变量本身就存在于当前的register中，所有的指令都可以直�
 
 全局变量在lua5.1中也是使用专门的指令，而5.2对这一点做了改变。Lua5.2中没有专门针对全局变量的指令，而是把全局表放到最外层函数的名字为"_ENV"的upvalue中。对于全局变量a，相当于编译期帮你改成了_ENV.a来进行访问。
 
-| name | args | desc |
-| -- | -- | -- |
-| OP_GETUPVAL | A B C  | R(A) := UpValue[B] |
-| OP_SETUPVAL | A B  | UpValue[B] := R(A) |
-| OP_GETTABUP | A B C | R(A) := UpValue[B][RK(C)] |
-| OP_SETTABUP | A B C | UpValue[A][RK(B)] := RK(C) |
+ name | args | desc 
+------------ | ------------- | -------------
+ OP_GETUPVAL | A B C  | R(A) := UpValue[B] 
+ OP_SETUPVAL | A B  | UpValue[B] := R(A) 
+ OP_GETTABUP | A B C | R(A) := UpValue[B][RK(C)] 
+ OP_SETTABUP | A B C | UpValue[A][RK(B)] := RK(C) 
 
 
 
