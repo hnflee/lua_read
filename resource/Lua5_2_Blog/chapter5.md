@@ -1,7 +1,7 @@
 # 虚拟机指令(5）Arithmetic
 
  name | args | desc 
- -- | -- | -- 
+------------ | ------------- | ------------- 
  OP_ADD | A B C | R(A) := RK(B) + RK(C) 
  OP_SUB | A B C | R(A) := RK(B) - RK(C) 
  OP_MUL | A B C | R(A) := RK(B) * RK(C) 
