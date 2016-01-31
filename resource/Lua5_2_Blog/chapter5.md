@@ -1,13 +1,13 @@
 # 虚拟机指令(5）Arithmetic
 
-| name | args | desc |
-| -- | -- | -- |
-| OP_ADD | A B C | R(A) := RK(B) + RK(C) |
-| OP_SUB | A B C | R(A) := RK(B) - RK(C) |
-| OP_MUL | A B C | R(A) := RK(B) * RK(C) |
-| OP_DIV | A B C | R(A) := RK(B) / RK(C) |
-| OP_MOD | A B C | R(A) := RK(B) % RK(C) |
-| OP_POW | A B C | R(A) := RK(B) ^ RK(C) |
+ name | args | desc 
+ -- | -- | -- 
+ OP_ADD | A B C | R(A) := RK(B) + RK(C) 
+ OP_SUB | A B C | R(A) := RK(B) - RK(C) 
+ OP_MUL | A B C | R(A) := RK(B) * RK(C) 
+ OP_DIV | A B C | R(A) := RK(B) / RK(C) 
+ OP_MOD | A B C | R(A) := RK(B) % RK(C) 
+ OP_POW | A B C | R(A) := RK(B) ^ RK(C) 
 
    	 
 上表中的指令都是与lua本身的二元操作符一一对应的标准3地址指令。B和C两个操作数计算的结果存入A中。
