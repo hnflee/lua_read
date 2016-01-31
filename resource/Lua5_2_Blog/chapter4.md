@@ -1,8 +1,8 @@
 # 虚拟机指令(4) Table
 
-| name | args | desc |
-| -- | -- | -- |
-| OP_NEWTABLE | A B C | R(A) := {} (size = B,C) |
+ name | args | desc 
+------------ | ------------- | -------------
+ OP_NEWTABLE | A B C | R(A) := {} (size = B,C) 
 
 NEWTABLE在寄存器A处创建一个table对象。B和C分别用来存储这个table数组部分和hash部分的初始大小。初始大小是在编译期计算出来并生成到这个指令中的，目的是使接下来对table的初始化填充不会造成rehash而影响效率。B和C使用“floating point byte”的方法来表示成(eeeeexxx)的二进制形式，其实际值为(1xxx) * 2^(eeeee-1)。
 
@@ -17,9 +17,9 @@ NEWTABLE在寄存器A处创建一个table对象。B和C分别用来存储这个t
 上面代码生成一个空的table，放入local变量a，B和C参数都为0。
 
 
-| name | args | desc |
-| -- | -- | -- |
-| OP_SETLIST | A B C | R(A)[(C-1)*FPF+i] := R(A+i), 1 <= i <= B |
+ name | args | desc 
+------------ | ------------- | -------------
+ OP_SETLIST | A B C | R(A)[(C-1)*FPF+i] := R(A+i), 1 <= i <= B 
 
 SETLIST用来配合NEWTABLE，初始化表的数组部分使用的。A为保存待设置表的寄存器，SETLIST要将A下面紧接着的寄存器列表(1--B)中的值逐个设置给表的数组部分。
 
@@ -90,10 +90,10 @@ constants (10) for 0x80048eb0:
 
 SETLIST只负责初始化表的数组部分，对于hash部分，还是通过SETTABLE来初始化。
 
-| name | args | desc |
-| -- | -- | -- |
-| OP_GETTABLE | A B C | R(A) := R(B)[RK(C)] |
-| OP_SETTABLE | A B C | R(A)[RK(B)] := RK(C) |
+ name | args | desc 
+------------ | ------------- | -------------
+ OP_GETTABLE | A B C | R(A) := R(B)[RK(C)] 
+ OP_SETTABLE | A B C | R(A)[RK(B)] := RK(C) 
 
 
 GETTABLE使用C表示的key，将寄存器B中的表项值获取到寄存器A中。SETTABLE设置寄存器A的表的B项为C代表的值。
