@@ -1,8 +1,8 @@
 # 虚拟机指令(2) MOVE & LOAD
- 
-| name | args | desc |
-| -- | -- | -- |
-| OP_MOVE | A B | R(A) := R(B) |
+
+ name | args | desc 
+------------ | ------------- | -------------
+ OP_MOVE | A B | R(A) := R(B) 
 
 OP_MOVE用来将寄存器B中的值拷贝到寄存器A中。由于Lua是register based vm，大部分的指令都是直接对寄存器进行操作，而不需要对数据进行压栈和弹栈，所以需要OP_MOVE指令的地方并不多。最直接的使用之处就是将一个local变量复制给另一个local变量时:
 
@@ -22,9 +22,9 @@ OP_MOVE用来将寄存器B中的值拷贝到寄存器A中。由于Lua是register
 在这里a被分配给register 0，b被分配给register 1。第二行的MOVE表示将a(register 0)的值赋给b(register 1)。其他使用的地方基本都是对寄存器的位置有特殊要求的地方，比如函数参数的传递等等。
 
 
- | name | args | desc |
-| -- | -- | -- |
-| OP_LOADK | A Bx | R(A) := Kst(Bx) |		
+  name | args | desc 
+------------ | ------------- | -------------
+ OP_LOADK | A Bx | R(A) := Kst(Bx)		
 
 LOADK将Bx表示的常量表中的常量值装载到寄存器A中。很多其他指令，比如数学操作指令，其本身可以直接从常量表中索引操作数，所以可以不依赖于LOADK指令。
 
@@ -40,15 +40,15 @@ LOADK将Bx表示的常量表中的常量值装载到寄存器A中。很多其他
     1   1  
     2   "foo"   
 ```
- | name | args | desc |
-| -- | -- | -- |
-| OP_LOADKX | A  | R(A) := Kst(extra arg) |	
+  name | args | desc 
+------------ | ------------- | -------------
+ OP_LOADKX | A  | R(A) := Kst(extra arg)	
 
 LOADKX是lua5.2新加入的指令。当需要生成LOADK指令时，如果需要索引的常量id超出了Bx所能表示的有效范围，那么就生成一个LOADKX指令，取代LOADK指令，并且接下来立即生成一个EXTRAARG指令，并用其Ax来存放这个id。5.2的这个改动使得一个函数可以处理超过262143个常量。
 
- | name | args | desc |
-| -- | -- | -- |
-| OP_LOADBOOL | A B C  | R(A) :=(Bool)B; if (C) pc++ |	
+  name | args | desc 
+------------ | ------------- | -------------
+ OP_LOADBOOL | A B C  | R(A) :=(Bool)B; if (C) pc++	
 
 LOADBOOL将B所表示的boolean值装载到寄存器A中。B使用0和1分别代表false和true。C也表示一个boolean值，如果C为1，就跳过下一个指令。
 
@@ -92,9 +92,9 @@ C在这里的作用比较特殊。要了解C的具体用处，首先要知道lua
 
 C的作用就是配合这种使用逻辑或关系表达式进行赋值的操作，他节省了后面必须跟的一个JMP指令。
 
- | name | args | desc |
-| -- | -- | -- |
-| OP_LOADNIL | A B   | R(A), R(A+1), ..., R(A+B) := nil |
+  name | args | desc 
+------------ | ------------- | -------------
+ OP_LOADNIL | A B   | R(A), R(A+1), ..., R(A+B) := nil 
 
 LOADNIL将使用A到B所表示范围的寄存器赋值成nil。用范围表示寄存器主要为了对以下情况进行优化：
 
